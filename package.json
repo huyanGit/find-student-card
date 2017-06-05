@@ -1,0 +1,23 @@
+{
+  "name": "lostedcard",
+  "version": "1.0.0",
+  "description": "lostedcard",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "easy-copy": "^1.0.1",
+    "express": "^4.15.2",
+    "mongoose": "^4.9.7",
+    "path": "^0.12.7",
+    "some-http-error": "^0.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "lostedcard"
+  ],
+  "author": "mrhu",
+  "license": "ISC"
+}

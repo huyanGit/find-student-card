@@ -1,0 +1,1 @@
+exports.Lostedcard = require('./lostedcard');
