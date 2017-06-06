@@ -7,8 +7,10 @@
     "body-parser": "^1.17.1",
     "easy-copy": "^1.0.1",
     "express": "^4.15.2",
+    "moment": "^2.18.1",
     "mongoose": "^4.9.7",
     "path": "^0.12.7",
+    "pug": "^2.0.0-rc.2",
     "some-http-error": "^0.2.0"
   },
   "devDependencies": {},

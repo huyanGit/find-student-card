@@ -9,9 +9,12 @@ const controllers = require('./controllers');
 const middlewares = require('./middlewares');
 
 mongoose.connect('mongodb://localhost/findcard');
+app.set('views', './views')
+app.set('view engine', 'pug')
 app.use(bodyParser.json());
-app.use(express.static('public'));
 app.use(middlewares.response);
+app.locals.moment = require('moment')
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(controllers);
 app.use(() => {throw new HttpError.NotFoundError('Path not found!')});
 app.use(middlewares.errorHandling);
@@ -22,5 +25,6 @@ if ('production' !== process.env.NODE_ENV) {
 }
 
 app.listen(3000);
+
 console.log('App started on port ' + 3000);
 module.exports = app;

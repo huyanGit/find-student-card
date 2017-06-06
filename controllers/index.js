@@ -4,7 +4,7 @@ const lostedcardController = require('./lostedcard');
 
 router.route('/lostedcard')
 	.get(lostedcardController.getAllLostedcards)
-	.put(lostedcardController.addLostedcard)
+	.post(lostedcardController.addLostedcard)
 	.all(() => {throw new HttpError.MethodNotAllowedError()});
 
 router.route('/lostedcard/search')
