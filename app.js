@@ -9,7 +9,7 @@ const controllers = require('./controllers');
 const middlewares = require('./middlewares');
 
 mongoose.connect('mongodb://localhost/findcard');
-app.set('views', './views')
+app.set('views', './views/pages')
 app.set('view engine', 'pug')
 app.use(bodyParser.json());
 app.use(middlewares.response);

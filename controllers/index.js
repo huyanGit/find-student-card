@@ -2,6 +2,11 @@ const router = require('express').Router();
 const HttpError = require('some-http-error');
 const lostedcardController = require('./lostedcard');
 
+router.route('/')
+	.get(function (req, res, next) {
+		res.redirect('/lostedcard');
+	})
+	.all(() => {throw new HttpError.MethodNotAllowedError()});
 router.route('/lostedcard')
 	.get(lostedcardController.getAllLostedcards)
 	.post(lostedcardController.addLostedcard)

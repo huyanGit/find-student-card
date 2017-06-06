@@ -35,9 +35,8 @@ lostedcardController.getOneLostedcard = (req, res, next) => {
 		throw new HttpError.BadRequestError("请输入学号");
 	}
 	Lostedcard.searchcard(cardid).then(lostedcard => {
-		console.log(!lostedcard.length);
 		if(!lostedcard.length){
-			res.end('学号无效或者未找到该卡！');
+			res.end('not found!');
 		}
 		res.success(lostedcard, 200);
 	})

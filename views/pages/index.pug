@@ -1,0 +1,33 @@
+extends ../layout
+block content
+  ._table
+    table(class="table table-striped _table")
+      thead
+        tr
+          th 序号
+          th 卡号
+          th 发布时间
+          th 丢失地点
+      tbody
+        if lostedcards && lostedcards.length > 0
+          each card in lostedcards          
+            tr
+              td #{card.num}
+              td #{card.cardid}
+              td #{moment(card.create_at).format('YYYY/MM/DD')}
+              td #{card.lostedplace}
+  .pages
+    nav(aria-label="Page navigation")
+      ul(class="pagination pagination-lg")
+        li
+          a(href="#" aria-label="Previous")
+            span(aria-hidden="true") &laquo;
+        li
+          a(href="#") 1
+        li
+          a(href="#") 2
+        li
+          a(href="#") 3
+        li
+          a(href="#" aria-label="Next")
+            span(aria-hidden="true") &raquo;
