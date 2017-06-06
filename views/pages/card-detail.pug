@@ -1,0 +1,19 @@
+extends ../layout
+block content
+  .panel.panel-default
+    .panel-heading 搜索结果
+    if lostedcard 
+      .panel-body
+        table(class="table")
+          thead
+            tr
+              th 卡号
+              th 发布时间
+              th 丢失地点
+          tbody        
+              tr
+                td #{lostedcard.cardid}
+                td #{moment(lostedcard.create_at).format('YYYY/MM/DD')}
+                td #{lostedcard.lostedplace}
+    else
+      .panel-body 不存在该卡信息
