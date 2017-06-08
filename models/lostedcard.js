@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const LostedcardShema = new Schema({
+const LostedcardSchema = new Schema({
 	num: {type: Number},
 	cardid:{type: String},
 	lostedplace:{type: String},
 	create_at: {type: Date, default: Date.now}
 });
 
-LostedcardShema.statics = {
+LostedcardSchema.statics = {
 	getLostedcards: function() {
 		return this.find({}).exec();
 	},
@@ -23,6 +23,6 @@ LostedcardShema.statics = {
 	}
 }
 
-const Lostedcard = mongoose.model('Lostedcard', LostedcardShema);
+const Lostedcard = mongoose.model('Lostedcard', LostedcardSchema);
 
 module.exports = Lostedcard;

@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const HttpError = require('some-http-error');
 const lostedcardController = require('./lostedcard');
+const userController = require('./user');
 
 router.route('/')
 	.get(function (req, res, next) {
@@ -20,4 +21,9 @@ router.route('/lostedcard/:cardid')
 	.delete(lostedcardController.deleteLostedcard)
 	.all(() => {throw new HttpError.MethodNotAllowedError()});
 
+router.route('/user')
+	.post(userController.createUser)
+	.get(userController.findAllUsers)
+	.all(() => {throw new HttpError.MethodNotAllowedError()});
+		
 module.exports = router;
