@@ -9,8 +9,8 @@ const LostedcardSchema = new Schema({
 });
 
 LostedcardSchema.statics = {
-	getLostedcards: function() {
-		return this.find({}).exec();
+	getLostedcardsByQuery: function(query, opt) {
+		return this.find(query, {}, opt).exec();
 	},
 	searchcard: function(cardid) {
 		return this.find({'cardid':cardid}).exec();
@@ -20,6 +20,9 @@ LostedcardSchema.statics = {
 	},
 	updateLostedcard: function (lostedcard) {
 		return lostedcard.save();
+	},
+	getNumOfCards: function(){
+		return this.count().exec();
 	}
 }
 

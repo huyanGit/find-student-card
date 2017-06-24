@@ -6,7 +6,7 @@ const lostedcardController = {};
 // add lostedcard
 lostedcardController.addLostedcard = (req, res, next) => {
 	const lostedcard = req.body;
-	const data = easyCopy(lostedcard, ['num', 'cardid', 'lostedplace']);
+	const data = easyCopy(lostedcard, ['cardid', 'lostedplace']);
 	Object.getOwnPropertyNames(data).forEach(key => {
 		if(!data[key]){
 			throw new HttpError.BadRequestError('缺少信息' + key);
@@ -19,7 +19,8 @@ lostedcardController.addLostedcard = (req, res, next) => {
 
 //get lostedcards
 lostedcardController.getAllLostedcards = (req, res, next) => {
-	Lostedcard.getLostedcards().then(lostedcards => {
+	const pagination = req.pageObj;
+	Lostedcard.getLostedcardsByQuery({}, pagination).then(lostedcards => {
 		res.render('index', {
 			lostedcards: lostedcards
 		});
@@ -27,6 +28,12 @@ lostedcardController.getAllLostedcards = (req, res, next) => {
 	}).catch(next);
 };
 
+//get card count 
+lostedcardController.getCardCount = (req, res, next) => {
+	Lostedcard.getNumOfCards().then(count => {
+		return res.success(count, 200);
+	}).catch(next);
+}
 
 //search one lostedcard
 lostedcardController.getOneLostedcard = (req, res, next) => {

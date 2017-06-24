@@ -4,7 +4,6 @@ block content
     table(class="table table-striped _table")
       thead
         tr
-          th 序号
           th 卡号
           th 发布时间
           th 丢失地点
@@ -12,7 +11,11 @@ block content
         if lostedcards && lostedcards.length > 0
           each card in lostedcards          
             tr
-              td #{card.num}
               td #{card.cardid}
               td #{moment(card.create_at).format('YYYY/MM/DD')}
               td #{card.lostedplace}
+  .pagination
+    button.btn.btn-default.prev 上一页
+    button.btn.btn-default.next 下一页
+    span.curr 1/
+    span.max_no

@@ -13,8 +13,9 @@ app.set('views', './views/pages')
 app.set('view engine', 'pug')
 app.use(bodyParser.json());
 app.use(middlewares.response);
-app.locals.moment = require('moment')
-app.use(express.static(path.join(__dirname, 'public')))
+app.locals.moment = require('moment');
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(middlewares.pagination);
 app.use(controllers);
 app.use(() => {throw new HttpError.NotFoundError('Path not found!')});
 app.use(middlewares.errorHandling);

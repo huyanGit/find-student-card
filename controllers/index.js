@@ -13,6 +13,10 @@ router.route('/lostedcard')
 	.post(lostedcardController.addLostedcard)
 	.all(() => {throw new HttpError.MethodNotAllowedError()});
 
+router.route('/lostedcard/count')
+	.get(lostedcardController.getCardCount)
+	.all(() => {throw new HttpError.MethodNotAllowedError()});
+
 router.route('/lostedcard/search')
 	.get(lostedcardController.getOneLostedcard)
 	.all(() => {throw new HttpError.MethodNotAllowedError()});

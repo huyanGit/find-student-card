@@ -18,7 +18,7 @@
 	text-align: center;
 }
 .footer{
-	position: absolute;
+	position: fixed;
   left: 0;
   bottom: 0;
 	background-color: #eee;
@@ -29,10 +29,6 @@
 }
 .footer span{
 	line-height: 80px;
-}
-.title{
-
-
 }
 ._form{
 	line-height: 80px;
@@ -51,6 +47,17 @@
 	border-bottom: 1px solid #eee;
 	display: flex;
 	justify-content: space-between;
+}
+.pagination{
+	text-align: center;
+	display: inline-block;
+	width: 100%;
+}
+.pagination button{
+	display: inline-block;
+}
+.prev,.next{
+	margin-right: 20px;
 }
 @media screen and (max-width: 1000px){
 	.header{
