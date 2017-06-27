@@ -12,7 +12,7 @@ block content
           each card in lostedcards          
             tr
               td #{card.cardid}
-              td #{moment(card.create_at).format('YYYY/MM/DD')}
+              td #{moment(card.create_at).format('YYYY-MM-DD')}
               td #{card.lostedplace}
   .pagination
     button.btn.btn-default.prev 上一页

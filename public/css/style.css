@@ -59,6 +59,11 @@
 .prev,.next{
 	margin-right: 20px;
 }
+.container .pagination .prev:focus,.container .pagination .next:focus{
+	outline: none;
+	background-color: #fff;
+	border-color: #ccc;
+}
 @media screen and (max-width: 1000px){
 	.header{
 		display: flex;

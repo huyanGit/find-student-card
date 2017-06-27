@@ -1,8 +1,9 @@
-var url = 'http://localhost:3000/';
+var url = 'http://localhost:3000/api';
 var max_no;
+var page_size = 8;
+var page_no = 1;
 $(function(){
 	getMaxNo();
-	var page_no = parseInt(getQueryString("page_no"), 10) || 1;
 	$('.curr').text(page_no + '/');
 	$('.next').click(next);	
 	$('.prev').click(prev);
@@ -10,10 +11,11 @@ $(function(){
 
 function getMaxNo(){
 	$.ajax({
-		url: url + 'lostedcard/count',
+		url: url + '/lostedcard/count',
 		type: 'GET',
 		success: function(count){
-			max_no = Math.ceil(count/10);
+			max_no = Math.ceil(count/8);
+			if(!max_no) max_no = 1;
 			$('.max_no').text(max_no);
 		},
 		error: function(err){
@@ -22,30 +24,43 @@ function getMaxNo(){
 	});
 }
 
+function getData(page_no, page_size){
+	$.ajax({
+		url: url + '/lostedcard?page_size=' + page_size + '&page_no=' + page_no,
+		type: 'GET',
+		success: function(lostedcards){
+			var html = '';
+			for(var i = 0; i < lostedcards.length; i++){
+				html += convertToStr(lostedcards[i]);
+			}
+			$('tbody tr').remove();
+			$('tbody').append(html);
+		},
+		error: function(err){
+			console.log(err);
+		}
+	});
+}
+
+function convertToStr(data){
+	return '<tr>' +
+	'<td>' + data.cardid + '</td>' +
+	'<td>' + data.create_at.slice(0,10) + '</td>' +
+	'<td>' + data.lostedplace + '</td>' +
+  '</tr>'
+}
+
 function next(){
-	var page_size = parseInt(getQueryString("page_size"), 10) || 8;
-	var page_no = parseInt(getQueryString("page_no"), 10) || 1;
+	if(page_no == max_no) return false;
 	page_no++;
-	if(page_no <= max_no){
-		window.location.href = url + 'lostedcard?page_size=' + page_size + '&page_no=' + page_no;
-	}else{
-		return false;
-	}
+	getData(page_no, page_size);
+	$('.curr').text(page_no + '/');
 }
 
 function prev(){
-	var page_size = parseInt(getQueryString("page_size"), 10) || 8;
-	var page_no = parseInt(getQueryString("page_no"), 10) || 1;
+	if(page_no == 1) return false
 	page_no--;
-	if(page_no){
-		window.location.href = url + 'lostedcard?page_size=' + page_size + '&page_no=' + page_no;
-	}else{
-		return false;
-	}
+	getData(page_no, page_size);
+	$('.curr').text(page_no + '/');
 }
 
-function getQueryString(name) { 
-	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
-	var r = window.location.search.substr(1).match(reg); 
-	if (r != null) return unescape(r[2]); return null; 
-} 

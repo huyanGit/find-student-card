@@ -12,19 +12,25 @@ lostedcardController.addLostedcard = (req, res, next) => {
 			throw new HttpError.BadRequestError('缺少信息' + key);
 		}
 	});
-	Lostedcard.updateLostedcard(new Lostedcard(data)).then(lostedcard => {
-		return res.success(lostedcard, 200);
+	Lostedcard.searchcard(data.cardid).then(lostedcard => {
+		if(!lostedcard.length){
+			Lostedcard.updateLostedcard(new Lostedcard(data)).then(lostedcard => {
+				return res.success(lostedcard, 200);
+			}).catch(next);
+		}else{
+			Lostedcard.removecardbyid(lostedcard[0]._id).then(() => {
+				res.success(null, 204);
+			}).catch(next);
+		}
 	}).catch(next);
+
 };
 
 //get lostedcards
 lostedcardController.getAllLostedcards = (req, res, next) => {
 	const pagination = req.pageObj;
 	Lostedcard.getLostedcardsByQuery({}, pagination).then(lostedcards => {
-		res.render('index', {
-			lostedcards: lostedcards
-		});
-		// res.success(lostedcards, 200);
+		res.success(lostedcards, 200);
 	}).catch(next);
 };
 
@@ -34,20 +40,6 @@ lostedcardController.getCardCount = (req, res, next) => {
 		return res.success(count, 200);
 	}).catch(next);
 }
-
-//search one lostedcard
-lostedcardController.getOneLostedcard = (req, res, next) => {
-	const cardid = req.query.search;
-	if(!cardid){
-		throw new HttpError.BadRequestError("请输入学号");
-	}
-	Lostedcard.searchcard(cardid).then(lostedcard => {
-		res.render('card-detail',{
-			lostedcard: lostedcard[0]
-		});
-	})
-};
-
 
 //delete one lostedcard
 lostedcardController.deleteLostedcard = (req, res, next) => {
