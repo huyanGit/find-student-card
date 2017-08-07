@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>校园卡招领</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="title">
+          <h1>校园卡招领<small>合肥工业大学宣城校区</small></h1>
+        </div>
+        <div class="_form">
+          <form method="get" action="http://localhost:3000/lostedcard">
+            <div class="form-group">
+              <input class="form-control" type="text" name="search" placeholder="请输入学号" id="search">
+              <button class="btn btn-default" type="submit" id="_button">搜索</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">搜索结果</div>
+        <div class="panel-body">不存在该卡信息</div>
+      </div>
+    </div>
+    <div class="footer"><span>合肥工业大学宣城校区</span><span>信息工程系</span><span>Copyright © 2017</span></div>
+    <script src="/js/jquery-1.11.1.min.js">   </script>
+    <script src="/js/script.js"></script>
+  </body>
+</html>

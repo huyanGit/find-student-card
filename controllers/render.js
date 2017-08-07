@@ -3,7 +3,7 @@ const render = {};
 
 //render index page
 render.renderIndex = (req, res, next) => {
-	Lostedcard.find({}, {}, {limit: 8}, (err, lostedcards) => {
+	Lostedcard.find({}, {}, {limit: 8, sort: {'create_at': -1}}, (err, lostedcards) => {
 		if(err) return next;
 		res.render('index', {
 			lostedcards: lostedcards

@@ -6,7 +6,7 @@ block content
         tr
           th 卡号
           th 发布时间
-          th 丢失地点
+          th 领取地点
       tbody
         if lostedcards && lostedcards.length > 0
           each card in lostedcards          
@@ -19,3 +19,11 @@ block content
     button.btn.btn-default.next 下一页
     span.curr 1/
     span.max_no
+  .friendship-link
+    blockquote
+      p 友情链接
+        span.link
+          a(href="http://iot.sjtu.edu.cn/" target="_blank") 了解物联网设计大赛
+          a(href="http://www.ti.com.cn/" target="_blank") TI
+          a(href="http://xc.hfut.edu.cn/" target="_blank") 合肥工业大学宣城校区
+          a(href="https://xcsoft.hfut.edu.cn/" target="_blank") 软件工程创新实验室

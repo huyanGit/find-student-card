@@ -7,7 +7,7 @@ const app = express();
 const HttpError = require('some-http-error');
 const controllers = require('./controllers');
 const middlewares = require('./middlewares');
-
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/findcard');
 app.set('views', './views/pages')
 app.set('view engine', 'pug')

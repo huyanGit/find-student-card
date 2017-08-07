@@ -17,6 +17,10 @@ router.route('/api/lostedcard')
 	.post(lostedcardController.addLostedcard)
 	.all(() => {throw new HttpError.MethodNotAllowedError()});
 
+router.route('/api/lostedcard/search')
+	.get(lostedcardController.searchCard)
+	.all(() => {throw new HttpError.MethodNotAllowedError()});
+
 router.route('/api/lostedcard/count')
 	.get(lostedcardController.getCardCount)
 	.all(() => {throw new HttpError.MethodNotAllowedError()});

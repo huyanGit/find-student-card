@@ -49,4 +49,15 @@ lostedcardController.deleteLostedcard = (req, res, next) => {
 	}).catch(next);
 }
 
+//search card 
+lostedcardController.searchCard = (req, res, next) => {
+	const cardid = req.query.cardid;
+	if(!cardid){
+		throw new HttpError.BadRequestError("请输入学号");
+	}
+	Lostedcard.searchcard(cardid).then(lostedcard => {
+		res.success(lostedcard[0], 200);
+	}).catch(next);
+};
+
 module.exports = lostedcardController;
