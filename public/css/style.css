@@ -73,6 +73,17 @@
 	margin-right: 10px;
 	color: #777;
 }
+@media screen and (min-width: 768px) {
+	.studentId,.email{
+	margin-right: 10px;
+	}
+	.email{
+		margin-left: 10px;
+	}
+	.sub{
+		margin-left: 10px;
+	}
+}
 @media screen and (max-width: 1000px){
 	.header{
 		display: flex;

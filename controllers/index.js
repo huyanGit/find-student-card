@@ -3,6 +3,7 @@ const HttpError = require('some-http-error');
 const lostedcardController = require('./lostedcard');
 const render = require('./render')
 const userController = require('./user');
+const notFoundCardController = require('./notFoundCard');
 
 router.route('/')
 	.get(render.renderIndex)
@@ -33,5 +34,13 @@ router.route('/api/user')
 	.post(userController.createUser)
 	.get(userController.findAllUsers)
 	.all(() => {throw new HttpError.MethodNotAllowedError()});
-		
+
+router.route('/api/notfoundcard')
+	.post(notFoundCardController.addCard)
+	.get(notFoundCardController.getCards)
+	.all(() => {throw new HttpError.MethodNotAllowedError()});
+
+router.route('/api/notfoundcard/:cardid')
+	.delete(notFoundCardController.removeCardById)
+	.all(() => {throw new HttpError.MethodNotAllowedError()});
 module.exports = router;

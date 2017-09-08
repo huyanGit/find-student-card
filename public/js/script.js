@@ -7,6 +7,7 @@ $(function(){
 	$('.curr').text(page_no + '/');
 	$('.next').click(next);	
 	$('.prev').click(prev);
+	$('.sub').click(addCard);
 });
 
 function getMaxNo(){
@@ -17,6 +18,27 @@ function getMaxNo(){
 			max_no = Math.ceil(count/8);
 			if(!max_no) max_no = 1;
 			$('.max_no').text(max_no);
+		},
+		error: function(err){
+			console.log(err);
+		}
+	});
+}
+
+function addCard () {
+	var obj = {
+		studentId: $('#studentId').val(),
+		email: $('#email').val()
+	}
+	$.ajax({
+		url: url +'/notfoundcard',
+		type: 'POST',
+		contentType: 'application/json',
+		data: JSON.stringify(obj),	
+		success: function(){
+			alert('提交成功！');
+			$('#studentId').val('');
+			$('#email').val('');
 		},
 		error: function(err){
 			console.log(err);

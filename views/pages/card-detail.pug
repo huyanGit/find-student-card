@@ -16,4 +16,14 @@ block content
                 td #{moment(lostedcard.create_at).format('YYYY/MM/DD')}
                 td #{lostedcard.lostedplace}
     else
-      .panel-body 不存在该卡信息
+      .panel-body 没有您的卡？告诉我们你的学号，我们会在回收到您的卡后第一时间通知您！
+      .panel-body
+        from(class="form-inline")
+          .form-group
+            label(for="studentId" class="studentId") 学号
+            input(class="form-control" placeholder="" id="studentId")
+          .form-group
+            label(for="email" class="email") 邮箱    
+            input(class="form-control" placeholder="" id="email")
+          .form-group
+            button(type="submit" class="btn btn-default sub") 提交
